@@ -1,16 +1,16 @@
 package com.trebogeer.klop.bubble.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import com.trebogeer.klop.bubble.*;
+import com.trebogeer.klop.bubble.BubblesActivity;
 
-public class HelloAndroidActivityTest extends ActivityInstrumentationTestCase2<HelloAndroidActivity> {
+public class HelloAndroidActivityTest extends ActivityInstrumentationTestCase2<BubblesActivity> {
 
     public HelloAndroidActivityTest() {
-        super(HelloAndroidActivity.class); 
+        super(BubblesActivity.class);
     }
 
     public void testActivity() {
-        HelloAndroidActivity activity = getActivity();
+        BubblesActivity activity = getActivity();
         assertNotNull(activity);
     }
 }
