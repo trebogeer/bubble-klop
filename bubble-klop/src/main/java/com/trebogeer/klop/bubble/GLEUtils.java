@@ -77,7 +77,7 @@ public class GLEUtils {
     }
 
     public static FloatBuffer allocateFloatBuffer(float[] array, int size) {
-        ByteBuffer byteBuf = ByteBuffer.allocateDirect(array.length * 4);
+        ByteBuffer byteBuf = ByteBuffer.allocateDirect(size);
         byteBuf.order(ByteOrder.nativeOrder());
         FloatBuffer fb = byteBuf.asFloatBuffer();
         fb.put(array);
