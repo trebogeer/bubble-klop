@@ -18,6 +18,28 @@
         <platform.version>2.3.3</platform.version>
     </properties>
 
+
+    <repositories>
+        <repository>
+            <!-- mvn install:install-file -Dfile=jpct_ae.jar -DgroupId=jpct -DartifactId=jpct-ae -Dversion=1.24 -Dpackaging=jar -DcreateChecksum=true -DlocalRepositoryPath=/home/dimav/bubble.klop/bubble-klop/repo/ -->
+            <id>project.local</id>
+            <name>local jars</name>
+            <!--<url>file:/home/dimav/bubble.klop/bubble-klop/repo</url>-->
+            <url>file:${basedir}/../repo</url>
+            <layout>default</layout>
+
+            <releases>
+                <enabled>true</enabled>
+                <checksumPolicy>ignore</checksumPolicy>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <checksumPolicy>ignore</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -33,6 +55,7 @@
                 <scope>provided</scope>
             </dependency>
 
+
             <!-- Androlog is a logging and reporting library for Android -->
             <dependency>
                 <groupId>de.akquinet.android.androlog</groupId>
@@ -46,6 +69,13 @@
                 <version>4.10</version>
                 <scope>provided</scope>
             </dependency>
+
+            <dependency>
+                <groupId>jpct</groupId>
+                <artifactId>jpct-ae</artifactId>
+                <version>1.24</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

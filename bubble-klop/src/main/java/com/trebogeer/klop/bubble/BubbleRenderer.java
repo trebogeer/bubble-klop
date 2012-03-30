@@ -20,6 +20,9 @@ public class BubbleRenderer extends GLSurfaceView implements GLSurfaceView.Rende
 
     private Square background;
     private Context context;
+    private Sphere sphere;
+    private float xRot = 2;
+    private float yRot = 2;
 
     /* The buffers for our light values */
     private FloatBuffer lightAmbientBuffer;
@@ -34,28 +37,17 @@ public class BubbleRenderer extends GLSurfaceView implements GLSurfaceView.Rende
         float[] lightDiffuse = {1.0f, 1.0f, 1.0f, 1.0f};
         float[] lightPosition = {0.0f, 0.0f, 2.0f, 1.0f};
 
-        ByteBuffer byteBuf = ByteBuffer.allocateDirect(lightAmbient.length * 4);
-        byteBuf.order(ByteOrder.nativeOrder());
-        lightAmbientBuffer = byteBuf.asFloatBuffer();
-        lightAmbientBuffer.put(lightAmbient);
-        lightAmbientBuffer.position(0);
+        lightAmbientBuffer = GLEUtils.allocateFloatBuffer(lightAmbient, lightAmbient.length * 4);
 
-        byteBuf = ByteBuffer.allocateDirect(lightDiffuse.length * 4);
-        byteBuf.order(ByteOrder.nativeOrder());
-        lightDiffuseBuffer = byteBuf.asFloatBuffer();
-        lightDiffuseBuffer.put(lightDiffuse);
-        lightDiffuseBuffer.position(0);
+        lightDiffuseBuffer = GLEUtils.allocateFloatBuffer(lightDiffuse, lightDiffuse.length * 4);
 
-        byteBuf = ByteBuffer.allocateDirect(lightPosition.length * 4);
-        byteBuf.order(ByteOrder.nativeOrder());
-        lightPositionBuffer = byteBuf.asFloatBuffer();
-        lightPositionBuffer.put(lightPosition);
-        lightPositionBuffer.position(0);
+        lightPositionBuffer = GLEUtils.allocateFloatBuffer(lightPosition, lightPosition.length * 4);
 
         final Display display = SysUtil.getWindowManager(context).getDefaultDisplay();
         int dw = display.getWidth();
         int dh = display.getHeight();
-        this.background = new Square(dw, dh);
+      //  this.background = new Square(dw, dh);
+        this.sphere = new Sphere(1, 25);
     }
 
     @Override
@@ -86,7 +78,7 @@ public class BubbleRenderer extends GLSurfaceView implements GLSurfaceView.Rende
         //Really Nice Perspective Calculations
         gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_NICEST);
 
-        background.loadGLTexture(gl, context);
+      //  background.loadGLTexture(gl, context);
         Log.i("Bubbles#onSurfaceCreated", "Exit method");
     }
 
@@ -107,6 +99,12 @@ public class BubbleRenderer extends GLSurfaceView implements GLSurfaceView.Rende
         gl.glEnable(GL10.GL_LIGHTING);
 
         // Translate into the screen
-        background.draw(gl, 0);
+       // background.draw(gl, 0);
+
+        gl.glTranslatef(0.0f, 0.0f, -5.0f);
+
+        gl.glRotatef(xRot, 0.0f, 1.0f, 0.0f);
+        gl.glRotatef(yRot, 1.0f, 0.0f, 0.0f);
+        sphere.draw(gl);
     }
 }

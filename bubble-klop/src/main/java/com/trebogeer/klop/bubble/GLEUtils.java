@@ -5,6 +5,9 @@ import android.opengl.GLU;
 import android.opengl.GLUtils;
 
 import javax.microedition.khronos.opengles.GL10;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
 
 /**
  * @author dimav
@@ -71,6 +74,15 @@ public class GLEUtils {
 
         gl.glMatrixMode(GL10.GL_MODELVIEW);  // Select model-view matrix
         gl.glLoadIdentity();
+    }
+
+    public static FloatBuffer allocateFloatBuffer(float[] array, int size) {
+        ByteBuffer byteBuf = ByteBuffer.allocateDirect(array.length * 4);
+        byteBuf.order(ByteOrder.nativeOrder());
+        FloatBuffer fb = byteBuf.asFloatBuffer();
+        fb.put(array);
+        fb.position(0);
+        return fb;
     }
 
 }

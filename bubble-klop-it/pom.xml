@@ -49,6 +49,10 @@
        <groupId>junit</groupId>
        <artifactId>junit</artifactId>
      </dependency>
+      <dependency>
+          <groupId>jpct</groupId>
+          <artifactId>jpct-ae</artifactId>
+      </dependency>
   </dependencies>
 
   <build>

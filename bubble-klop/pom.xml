@@ -24,6 +24,10 @@
       <groupId>de.akquinet.android.androlog</groupId>
       <artifactId>androlog</artifactId>
     </dependency>
+      <dependency>
+          <groupId>jpct</groupId>
+          <artifactId>jpct-ae</artifactId>
+      </dependency>
   </dependencies>
 
   <build>
